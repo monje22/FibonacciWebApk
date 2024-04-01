@@ -1,0 +1,61 @@
+﻿@model IEnumerable<serie_fibonacci.Models.Fibonacci>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Historial de Ejecuciones</h1>
+
+<p>
+    <a class="btn btn-success" asp-action="Create">Crear nuevo</a>
+</p>
+<div class="container gridBg" >
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstNum)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SecondNum)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SumTotal)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+</div>
+
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecondNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SumTotal)
+            </td>
+            <td>
+                <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

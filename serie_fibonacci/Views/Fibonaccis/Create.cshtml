@@ -1,0 +1,52 @@
+﻿@model serie_fibonacci.Models.Fibonacci
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Crear Nueva Serie</h1>
+
+<div>
+    <a class="btn btn-danger" asp-action="Index">Volver a la lista</a>
+</div>
+<div class="row" id="crear">
+    <div class="col-md-4 gridBgcrear">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label  asp-for="Name" class="control-label">Nombre</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstNum" class="control-label"></label>
+                <input asp-for="FirstNum" class="form-control" />
+                <span asp-validation-for="FirstNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondNum" class="control-label"></label>
+                <input asp-for="SecondNum" class="form-control" />
+                <span asp-validation-for="SecondNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SumTotal" class="control-label"></label>
+                <input asp-for="SumTotal" class="form-control" />
+                <span asp-validation-for="SumTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
