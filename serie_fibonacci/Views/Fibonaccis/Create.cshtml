@@ -14,32 +14,37 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label  asp-for="Name" class="control-label">Nombre</label>
+                <label  asp-for="Name" class="control-label labelCrear">Nombre</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
+                @{
+                    DateTime tiempo = DateTime.Now;
+                    var res = tiempo.ToString("yyyy-MM-dd");
+                }
+
+                <input asp-for="Date" class="form-control invisible" value="@res" />
             </div>
             <div class="form-group">
-                <label asp-for="FirstNum" class="control-label"></label>
+                <label asp-for="FirstNum" class="control-label labelCrear">Primer Numero:</label>
                 <input asp-for="FirstNum" class="form-control" />
                 <span asp-validation-for="FirstNum" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SecondNum" class="control-label"></label>
+                <label asp-for="SecondNum" class="control-label labelCrear">Segundo Numero:</label>
                 <input asp-for="SecondNum" class="form-control" />
                 <span asp-validation-for="SecondNum" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SumTotal" class="control-label"></label>
-                <input asp-for="SumTotal" class="form-control" />
-                <span asp-validation-for="SumTotal" class="text-danger"></span>
+               
+               <input asp-for="SumTotal" class="form-control " value=""/>
+               
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            
+            <div class="form-group" id="crearBtn">
+                <input type="submit" value="Crear" class="btn btn-success" />
             </div>
         </form>
     </div>

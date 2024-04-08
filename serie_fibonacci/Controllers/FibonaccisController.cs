@@ -22,7 +22,7 @@ namespace serie_fibonacci.Controllers
         // GET: Fibonaccis
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Fibonacci.ToListAsync());
+            return View(await _context.Fibonacci.ToListAsync());            
         }
 
         // GET: Fibonaccis/Details/5
@@ -44,17 +44,17 @@ namespace serie_fibonacci.Controllers
         }
 
         // GET: Fibonaccis/Create
-        public IActionResult Create()
+        /*public IActionResult Create()
         {
             return View();
         }
-
+*/
         // POST: Fibonaccis/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Date,FirstNum,SecondNum,TotalNum")] Fibonacci fibonacci)
+        /*[ValidateAntiForgeryToken]*/
+        public async Task<IActionResult> Create([Bind("Id,Name,Date,FirstNum,SecondNum,SumTotal, Serie")] Fibonacci fibonacci)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace serie_fibonacci.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(fibonacci);
+            return View("Calcular");
         }
 
         // GET: Fibonaccis/Edit/5
@@ -153,5 +153,86 @@ namespace serie_fibonacci.Controllers
         {
             return _context.Fibonacci.Any(e => e.Id == id);
         }
+        public IActionResult Calcular() {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CalcularSerie(int FirstNum, int SecondNum) {
+            if (FirstNum == 0 || SecondNum==0) {
+                ViewBag.Clase = "MensajeInactivo";
+                return View("Calcular");
+            }
+            else
+            {
+                if (FirstNum > SecondNum)
+                {
+                    ViewBag.Clase = "MensajeActivo";
+                    return View("Calcular");
+                }
+                else
+                {
+                    String res = "";
+                    int cant = 15;
+                    int c1 = FirstNum;
+                    int c2 = SecondNum;
+                    int sum = 0;
+                    int sumaTotal = 0;
+                    for (int i = 0; i < cant; i++)
+                    {
+                        if (i == 0)
+                        {
+                            res = FirstNum + ", " + SecondNum;
+                            sumaTotal = FirstNum + SecondNum;
+                        }
+                        else
+                        {
+                            res = res + ", " + SecondNum;
+                            sumaTotal = sumaTotal + SecondNum;
+
+                        }
+                        
+                        sum = FirstNum + SecondNum;
+                        FirstNum = SecondNum;
+                        SecondNum = sum;
+
+                    }
+                    ViewBag.res = res;
+                    ViewBag.sum = sumaTotal;
+                    ViewBag.Fn = c1;
+                    ViewBag.Sn = c2;
+                    ViewBag.Clase = "MensajeInactivo";
+                    return View("Calcular");
+                }
+            }
+            
+            
+        }
+        [HttpGet]
+        public IActionResult FiltrarAsc()
+        {
+
+            var datos = _context.FiltrofechaAsc();
+       
+            return View("Index",datos);
+        }
+        [HttpGet]
+        public IActionResult FiltrarDesc()
+        {
+            var datos = _context.FiltrofechaDes();
+            return View("Index",datos);
+        }
+        [HttpGet]
+        public IActionResult FiltrarSumDesc()
+        {
+            var datos = _context.FiltroSumaDes();
+            return View("Index", datos);
+        }
+        [HttpGet]
+        public IActionResult FiltrarSumaAsc()
+        {
+            var datos = _context.FiltroSumaAsc();
+            return View("Index", datos);
+        }
+
     }
 }

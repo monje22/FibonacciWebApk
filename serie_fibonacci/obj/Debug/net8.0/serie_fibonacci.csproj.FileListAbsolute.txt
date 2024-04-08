@@ -250,3 +250,4 @@ D:\toño\w3school c#\serie_fibonacci\serie_fibonacci\obj\Debug\net8.0\refint\ser
 D:\toño\w3school c#\serie_fibonacci\serie_fibonacci\obj\Debug\net8.0\serie_fibonacci.pdb
 D:\toño\w3school c#\serie_fibonacci\serie_fibonacci\obj\Debug\net8.0\serie_fibonacci.genruntimeconfig.cache
 D:\toño\w3school c#\serie_fibonacci\serie_fibonacci\obj\Debug\net8.0\ref\serie_fibonacci.dll
+D:\toño\w3school c#\serie_fibonacci\serie_fibonacci\obj\Debug\net8.0\serie_fibonacci.sourcelink.json

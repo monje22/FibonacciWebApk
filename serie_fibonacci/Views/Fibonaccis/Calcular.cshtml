@@ -1,11 +1,81 @@
-﻿@* 
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
- *@
+﻿@model serie_fibonacci.Models.Fibonacci
 @{
-    ViewData["tittle"] = "Calcular";
+    ViewData["Title"] = "Calcular";
 }
 <h1>Calcular</h1>
-<div>
-    <label>Ingrese un numero</label>
-    <input type="text">
+
+<div class="container gridBg">
+   
+    <div class="container mb-2" id="formCalcular" >
+
+        <form class=" row" asp-action="CalcularSerie" asp-controller="Fibonaccis" method="post">
+            <div class="row">
+                    <div class="col-5">
+                        <label>Primer Numero:</label>
+                        <input asp-for="FirstNum" type="text" />
+                        <span asp-validation-for="FirstNum" class="text-danger"></span>
+                    <span class="text-danger  @ViewBag.Clase ">El Primer numero es mayor al Segundo numero</span>
+                    </div>
+                    <div class="col-5">
+                        <label>Segundo Numero:</label>
+                        <input asp-for=SecondNum type="text" />
+                        <span asp-validation-for="SecondNum" class="text-danger"></span>
+                    </div>
+                    <div class="col-1">
+                        <button  class="btn btn-primary">Calcular</button>
+                    </div>
+            </div>
+        </form>
+            <br />
+        <form class="container" asp-action="Calcular" asp-controller="Fibonaccis">
+            <div class="row">
+                <div class="col-sm-3">
+                    <label>Serie de Numeros:</label>
+                </div>
+                <div class="col-sm-8" id="numerosAMostar">
+                    <div class="row">
+                        <div class="col col-md">
+                            <label id="serie">@((string)ViewBag.res != null ? ViewBag.res : "")</label>
+                            <input type="hidden" asp-for="Serie" value="@ViewBag.res" />
+                            @{
+                                DateTime tiempo = DateTime.Now;
+                                var res = tiempo.ToString("yyyy-MM-dd");
+
+                            }
+                            <input type="hidden" asp-for="FirstNum" value="@ViewBag.Fn" />
+                            <input type="hidden" asp-for="SecondNum" value="@ViewBag.Sn" />
+                            <input type="hidden" asp-for="Date" value="@res" />
+                            <input type="hidden" asp-for="SumTotal" value="@ViewBag.sum" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="NombreSerie">
+                <label class="col-2">Nombre se Serie</label>
+                <div id="inptxt">
+                    <input class="col" asp-for=Name type="text" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <label class="col">La suma de los numeros de la serie es:</label>
+                    <label class="col"id="suma">@ViewBag.sum</label>
+                </div>
+                <div class="row">
+                    <div class="col-9"></div>
+                    <a asp-controller="Fibonaccis" asp-action="Index" class="btn btn-danger col">Cancelar</a>
+                    <button asp-action="create" type="submit" class="btn btn-success col">Guardar</button>
+                </div>
+            </div>
+        </form>
+            
+        
+        
+        
+       
+    </div>
+
 </div>

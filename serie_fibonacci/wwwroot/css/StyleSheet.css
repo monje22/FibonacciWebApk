@@ -15,6 +15,9 @@
     background-color: #f2f2f2;
     border-radius: 18px;
     padding: 5px;
+    padding-left:20px;
+    padding-right:20px;
+    margin-bottom:50px;
 }
 .gridBgcrear {
     background-color: #f2f2f2;
@@ -55,4 +58,44 @@ h1 {
 #crear {
     justify-content:center;
 }
-
+.labelCrear {
+    font-weight:550;
+}
+#crearBtn {
+    margin-top:20px;
+}
+.col {
+    margin:13px;
+}
+.Calcular_GuardarBtn {
+      display:flex;
+      justify-content:flex-end;
+}
+#formCalcular {
+    margin-top:20px;
+}
+#numerosAMostar {
+    display:flex;
+    justify-content:center;
+    font-weight:600;
+    border-color:black;
+    border:groove;
+    border-width:3px;
+    border-radius:4px;
+}
+#NombreSerie {
+    margin-top: 5%;
+    
+}
+#inptxt {
+   
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+}
+.MensajeActivo {
+    display:block;
+}
+.MensajeInactivo {
+    display:none;
+}
